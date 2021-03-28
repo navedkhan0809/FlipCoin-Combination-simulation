@@ -5,12 +5,15 @@ j=0
 k=0
 l=0
 a=0
-
+m=0
+n=0
+o=0
+q=0
 echo -e "Enter Number of times of two Coin flip=\c"
 read f
 
 #Singlet combination
-echo "---------------------Singlet combination-------------------------"
+echo "------------------------Singlet combination-------------------------"
 while [ $i -lt $f ]
 do
 	toss=$((RANDOM%2))
@@ -28,19 +31,47 @@ done
 echo "You won HEADS $j times"
 echo "You won TAILS $k times"
 
+echo "Storing combinations in dictionary: "
+
 declare -A flip
-for ((p=1; p<=$j; p++))
-do
-	flip[$p]="HEADS"
-done
+	for ((p=1; p<=$j; p++))
+	do
+		flip[HEADS]="$p"
+	done
+
+	for ((p=1; p<=$k; p++))
+	do
+		flip[TAILS]="$p"
+	done
 echo ${flip[@]}
 
-perc=`echo "scale=2;($j/$f)*100"|bc`
-echo "percentage of heads = $perc %"
+per1=`echo "scale=2;($j/$f)*100"|bc`
+per2=`echo "scale=2;($k/$f)*100"|bc`
+
+echo "percentage of heads = $per1 %"
+echo "percentage of tails = $per2 %"
+
+echo "Storing percentage in dictionary: "
+
+declare -A percent
+	percent[HEADS]="$per1"
+	percent[TAILS]="$per2"
+echo ${percent[@]}
 
 #Doublet combination
 echo "--------------------------Doublet combination----------------------"
-while [ $a -lt $f ]
+
+a=1
+i=0
+j=0
+k=0
+l=0
+m=0
+n=0
+o=0
+q=0
+
+for (( x=$a; x<=$f; x++ ))
 do
 	toss=$((RANDOM%4))
 
@@ -61,7 +92,6 @@ do
 				"3")
 				l=$(($l+1))
 		esac
-	a=$(($a + 1))
 done
 
 echo "You won HH $i times"
@@ -69,34 +99,34 @@ echo "You won HT $j times"
 echo "You won TH $k times"
 echo "You won TT $l times"
 
-echo "Combinations in storing in dictionary: "
+echo "Storing combinations in dictionary: "
+
 declare -A flip1
+
 for ((p=1; p<=$i; p++))
 do
-	flip1[$i]="HH"
+	flip1[HH]="$p"
 done
-echo ${flip1[@]}
 
-declare -A flip2
+
 for ((p=1; p<=$j; p++))
 do
-	flip2[$p]="HT"
+	flip1[HT]="$p"
 done
-echo ${flip2[@]}
 
-declare -A flip3
+
 for ((p=1; p<=$k; p++))
 do
-	flip3[$p]="TH"
+	flip1[TH]="$p"
 done
-echo ${flip3[@]}
 
-declare -A flip4
+
 for ((p=1; p<=$l; p++))
 do
-	flip4[$p]="TT"
+	flip1[TT]="$p"
 done
-echo ${flip4[@]}
+
+echo ${flip1[@]}
 
 perc1=`echo "scale=2;($i/$f)*100"|bc`
 echo "percentage of HH = $perc1 %"
@@ -110,12 +140,11 @@ echo "percentage of TH = $perc3 %"
 perc4=`echo "scale=2;($l/$f)*100"|bc`
 echo "percentage of TT = $perc4 %"
 
-echo "Percentages in dictionary: "
-declare -A percentage
+echo "storing Percentages in dictionary: "
 
+declare -A percentage
 	percentage[perc1]="$perc1"
 	percentage[perc2]="$perc2"
 	percentage[perc3]="$perc3"
 	percentage[perc4]="$perc4"
-
 echo ${percentage[@]}

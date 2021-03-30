@@ -289,12 +289,36 @@ echo "percentage of HHT = $perc88 %"
 echo "Percentages in dictionary: "
 
 declare -A percentage1
-	percentage1[perc11]="$perc11"
-	percentage1[perc22]="$perc22"
-	percentage1[perc33]="$perc33"
-	percentage1[perc44]="$perc44"
-	percentage1[perc55]="$perc55"
-	percentage1[perc66]="$perc66"
-	percentage1[perc77]="$perc77"
-	percentage1[perc88]="$perc88"
+	percentage1[HHH]="$perc11"
+	percentage1[TTT]="$perc22"
+	percentage1[HTT]="$perc33"
+	percentage1[THT]="$perc44"
+	percentage1[TTH]="$perc55"
+	percentage1[THH]="$perc66"
+	percentage1[HTH]="$perc77"
+	percentage1[HHT]="$perc88"
 echo ${percentage1[@]}
+
+echo "---------------------Sorting combinations by percentage--------------"
+
+
+echo "Sorting Singlet combination Percentage"
+echo ${percent[@]}
+z=`printf '%s\n'  "${percent[@]}" | sort -n|tail -1`
+echo "$z % is winning percentage combination"
+
+echo "..........................."
+
+
+echo "Sorting doublet combination Percentage"
+echo ${percentage[@]}
+x=`printf '%s\n'  "${percentage[@]}" | sort -n|tail -1`
+echo "$x % is winning percentage combination"
+
+echo "..........................."
+
+echo "Sorting triplet combination Percentage"
+echo ${percentage1[@]}
+w=`printf '%s\n'  "${percentage1[@]}" | sort -n |tail -1`
+echo "$w % is winning percentage combination"
+
